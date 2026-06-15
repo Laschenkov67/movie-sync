@@ -3,18 +3,18 @@ import { createHash } from 'crypto';
 import type { DataSource, EntityManager } from 'typeorm';
 import { In } from 'typeorm';
 
-import { config } from '../config';
-import { Genre } from '../entities/genre';
-import { Movie } from '../entities/movie';
-import { SyncState } from '../entities/sync-state';
-import { logger } from '../logger';
+import { config } from '@/config';
+import { Genre } from '@/entities/genre';
+import { Movie } from '@/entities/movie';
+import { SyncState } from '@/entities/sync-state';
+import { logger } from '@/logger';
 import {
   moviesSoftDeletedTotal,
   moviesUpsertedTotal,
   syncDurationSeconds,
   syncRunsTotal,
 } from '../metrics';
-import type { MovieDetailJob, MovieSyncQueue } from '../queue/sync-queue';
+import type { MovieDetailJob, MovieSyncQueue } from '@/queue/sync-queue';
 
 import type { TmdbClient, TmdbMovieDetails } from './tmdb-client';
 

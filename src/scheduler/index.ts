@@ -1,8 +1,8 @@
 import cron from 'node-cron';
 
 import type { SyncService } from '../services/sync-service';
-import { config } from '../config';
-import { logger } from '../logger';
+import { config } from '@/config';
+import { logger } from '@/logger';
 
 export class SyncScheduler {
   private task: cron.ScheduledTask | null = null;

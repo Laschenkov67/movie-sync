@@ -1,8 +1,8 @@
 import { ConnectionOptions, Worker } from 'bullmq';
 
-import { logger } from '../logger';
-import { queueJobsTotal } from '../metrics';
-import type { SyncService } from '../services/sync-service';
+import { logger } from '@/logger';
+import { queueJobsTotal } from '@/metrics';
+import type { SyncService } from '@/services/sync-service';
 
 import { createRedisConnection } from './connection';
 import { MOVIE_SYNC_QUEUE, MovieDetailJob } from './sync-queue';

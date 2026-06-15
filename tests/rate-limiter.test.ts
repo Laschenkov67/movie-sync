@@ -1,4 +1,4 @@
-import { RateLimiter } from '../src/services/rate-limiter';
+import { RateLimiter } from '@/services/rate-limiter';
 
 describe('RateLimiter', () => {
   it('limits throughput to the configured rps', async () => {

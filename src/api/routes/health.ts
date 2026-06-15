@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import type { DataSource } from 'typeorm';
 
-import { asyncHandler } from '../middlewares/async-handler';
+import { asyncHandler } from '@/api/middlewares/async-handler';
 
 export function healthRouter(ds: DataSource): Router {
   const router = Router();

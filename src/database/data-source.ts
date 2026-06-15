@@ -3,10 +3,10 @@ import path from 'path';
 
 import { DataSource } from 'typeorm';
 
-import { config } from '../config';
-import { Genre } from '../entities/genre';
-import { Movie } from '../entities/movie';
-import { SyncState } from '../entities/sync-state';
+import { config } from '@/config';
+import { Genre } from '@/entities/genre';
+import { Movie } from '@/entities/movie';
+import { SyncState } from '@/entities/sync-state';
 
 export const AppDataSource = new DataSource({
   type: 'postgres',

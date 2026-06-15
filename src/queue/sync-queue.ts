@@ -1,6 +1,6 @@
 import {Queue, QueueEvents } from 'bullmq';
 
-import { logger } from '../logger';
+import { logger } from '@/logger';
 
 import { createRedisConnection } from './connection';
 

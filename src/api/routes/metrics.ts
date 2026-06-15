@@ -1,7 +1,7 @@
 import { Router } from 'express';
 
-import { registry } from '../../metrics';
-import { asyncHandler } from '../middlewares/async-handler';
+import { registry } from '@/metrics';
+import { asyncHandler } from '@/api/middlewares/async-handler';
 
 export function metricsRouter(): Router {
   const router = Router();

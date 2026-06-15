@@ -1,7 +1,7 @@
 import { Router } from 'express';
 
-import type { SyncService } from '../../services/sync-service';
-import { asyncHandler } from '../middlewares/async-handler';
+import type { SyncService } from '@/services/sync-service';
+import { asyncHandler } from '@/api/middlewares/async-handler';
 
 export function syncRouter(sync: SyncService): Router {
   const router = Router();

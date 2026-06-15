@@ -1,6 +1,6 @@
 import nock from 'nock';
 
-import { TmdbClient } from '../src/services/tmdb-client';
+import { TmdbClient } from '@/services/tmdb-client';
 
 describe('TmdbClient', () => {
   afterEach(() => nock.cleanAll());

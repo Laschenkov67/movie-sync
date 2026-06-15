@@ -2,9 +2,9 @@ import type { AxiosInstance, AxiosResponse } from 'axios';
 import axios from 'axios';
 import axiosRetry from 'axios-retry';
 
-import { config } from '../config';
-import { logger } from '../logger';
-import { tmdbRequestsTotal } from '../metrics';
+import { config } from '@/config';
+import { logger } from '@/logger';
+import { tmdbRequestsTotal } from '@/metrics';
 
 import { RateLimiter } from './rate-limiter';
 

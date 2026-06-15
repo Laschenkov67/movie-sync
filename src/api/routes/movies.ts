@@ -1,8 +1,8 @@
 import { Router } from 'express';
 import { z } from 'zod';
 
-import type { SyncService } from '../../services/sync-service';
-import { asyncHandler } from '../middlewares/async-handler';
+import type { SyncService } from '@/services/sync-service';
+import { asyncHandler } from '@/api/middlewares/async-handler';
 
 const listQuerySchema = z.object({
   page: z.coerce.number().int().positive().default(1),
