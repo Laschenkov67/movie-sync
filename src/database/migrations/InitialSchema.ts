@@ -1,7 +1,7 @@
 import type { MigrationInterface, QueryRunner } from 'typeorm';
 
-export class InitialSchema1700000000000 implements MigrationInterface {
-  name = 'InitialSchema1700000000000';
+export class InitialSchema implements MigrationInterface {
+  name = 'InitialSchema';
 
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.query(`
@@ -86,7 +86,6 @@ export class InitialSchema1700000000000 implements MigrationInterface {
       ON CONFLICT (id) DO NOTHING;
     `);
 
-    // pg_trgm для индекса по title; на managed PG обычно есть в whitelisted extensions.
     await queryRunner.query(`CREATE EXTENSION IF NOT EXISTS pg_trgm;`);
   }
 

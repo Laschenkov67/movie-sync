@@ -9,7 +9,7 @@ import { moviesRouter } from './api/routes/movies';
 import { syncRouter } from './api/routes/sync';
 import { logger } from './logger';
 import { httpRequestDuration } from './metrics';
-import type { SyncService } from './services/SyncService';
+import type { SyncService } from './services/sync-service';
 
 export function createApp(deps: { ds: DataSource; sync: SyncService }): express.Express {
   const app = express();

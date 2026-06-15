@@ -80,7 +80,6 @@ export class TmdbClient {
       retryDelay: (retryCount, error) => {
         const retryAfter = Number(error.response?.headers?.['retry-after']);
         if (Number.isFinite(retryAfter) && retryAfter > 0) return retryAfter * 1000;
-        // exponential backoff with jitter
         const base = Math.min(2 ** retryCount * 500, 10_000);
         return base + Math.floor(Math.random() * 250);
       },

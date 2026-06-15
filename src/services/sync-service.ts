@@ -4,9 +4,9 @@ import type { DataSource, EntityManager } from 'typeorm';
 import { In } from 'typeorm';
 
 import { config } from '../config';
-import { Genre } from '../entities/Genre';
-import { Movie } from '../entities/Movie';
-import { SyncState } from '../entities/SyncState';
+import { Genre } from '../entities/genre';
+import { Movie } from '../entities/movie';
+import { SyncState } from '../entities/sync-state';
 import { logger } from '../logger';
 import {
   moviesSoftDeletedTotal,
@@ -16,7 +16,7 @@ import {
 } from '../metrics';
 import type { MovieDetailJob, MovieSyncQueue } from '../queue/sync-queue';
 
-import type { TmdbClient, TmdbMovieDetails } from './TmdbClient';
+import type { TmdbClient, TmdbMovieDetails } from './tmdb-client';
 
 const SYNC_ID = 'movies';
 
@@ -226,7 +226,7 @@ export class SyncService {
     logger.info({ startDate, endDate }, 'Incremental sync started');
 
     const totals = { created: 0, updated: 0, deleted: 0, failed: 0 };
-    let status: SyncReport['status'] = 'success';
+    let status = 'success' as SyncReport['status'];
 
     try {
       // 1. Собираем все ID изменений с пагинацией.
@@ -283,7 +283,6 @@ export class SyncService {
       fresh.status = 'failed';
       fresh.lastError = message;
       fresh.lastFinishedAt = new Date();
-      // Курсор НЕ двигаем — на следующем запуске повторим этот же диапазон.
       await stateRepo.save(fresh);
       syncRunsTotal.inc({ status: 'failed' });
       stopTimer();
@@ -299,7 +298,6 @@ export class SyncService {
     fresh.createdCount = totals.created;
     fresh.deletedCount = totals.deleted;
     fresh.failedCount = totals.failed;
-    // Двигаем курсор только при success/partial — partial допустим, т.к. упавшие задачи перепланируются очередью.
     if (status !== 'failed') fresh.cursorAt = now;
     await stateRepo.save(fresh);
 
@@ -386,11 +384,6 @@ export class SyncService {
   async getMovieById(id: number): Promise<Movie | null> {
     const repo = this.ds.getRepository(Movie);
     return repo.findOne({ where: { id }, relations: { genres: true } });
-  }
-
-  async ensureGenresLoaded(): Promise<void> {
-    // Можно дополнительно дёргать /genre/movie/list — для краткости опущено,
-    // т.к. жанры приходят в /movie/{id} и upsert-ятся там же.
   }
 }
 

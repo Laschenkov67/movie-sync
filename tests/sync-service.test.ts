@@ -1,10 +1,10 @@
 import type { DataSource } from 'typeorm';
 
-import { Genre } from '../src/entities/Genre';
-import { Movie } from '../src/entities/Movie';
+import { Genre } from '../src/entities/genre';
+import { Movie } from '../src/entities/movie';
 import type { SyncState } from '../src/entities/sync-state';
 import { SyncService } from '../src/services/sync-service';
-import type { TmdbClient, TmdbMovieDetails } from '../src/services/TmdbClient';
+import type { TmdbClient, TmdbMovieDetails } from '../src/services/tmdb-client';
 
 describe('SyncService.hashDetails', () => {
   const base: TmdbMovieDetails = {
