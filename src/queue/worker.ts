@@ -1,14 +1,14 @@
-import { Worker } from 'bullmq';
+import { ConnectionOptions, Worker } from 'bullmq';
 
 import { logger } from '../logger';
 import { queueJobsTotal } from '../metrics';
-import type { SyncService } from '../services/SyncService';
+import type { SyncService } from '../services/sync-service';
 
 import { createRedisConnection } from './connection';
-import type { MOVIE_SYNC_QUEUE, MovieDetailJob } from './sync-queue';
+import { MOVIE_SYNC_QUEUE, MovieDetailJob } from './sync-queue';
 
 export function startMovieSyncWorker(syncService: SyncService, concurrency = 5): Worker {
-  const connection = createRedisConnection();
+  const connection = createRedisConnection() as unknown as ConnectionOptions;
 
   const worker = new Worker<MovieDetailJob>(
     MOVIE_SYNC_QUEUE,

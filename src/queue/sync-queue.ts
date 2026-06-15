@@ -1,4 +1,4 @@
-import { Queue, QueueEvents } from 'bullmq';
+import {Queue, QueueEvents } from 'bullmq';
 
 import { logger } from '../logger';
 
